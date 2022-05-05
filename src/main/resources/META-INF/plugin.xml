@@ -1,0 +1,22 @@
+<idea-plugin>
+    <id>com.github.jtmelton.semgrepideaplugin</id>
+    <name>semgrep-idea</name>
+    <vendor>jtmelton</vendor>
+
+    <!-- Product and plugin compatibility requirements -->
+    <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
+    <depends>com.intellij.modules.lang</depends>
+    <depends optional="true" config-file="plugin-python.xml">com.intellij.modules.pycharm</depends>
+    <depends optional="true" config-file="plugin-go.xml">org.jetbrains.plugins.go</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <externalAnnotator language="JAVA" implementationClass="com.github.jtmelton.semgrepideaplugin.analysis.SemgrepAnnotator" />
+        <externalAnnotator language="JSON" implementationClass="com.github.jtmelton.semgrepideaplugin.analysis.SemgrepAnnotator" />
+    </extensions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable parentId="tools" instance="com.github.jtmelton.semgrepideaplugin.settings.SemgrepSettingsConfigurable"
+                                 id="com.github.jtmelton.semgrepideaplugin.settings.SemgrepSettingsConfigurable" displayName="Semgrep Settings"/>
+    </extensions>
+
+</idea-plugin>
